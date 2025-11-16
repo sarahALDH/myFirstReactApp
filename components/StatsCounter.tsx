@@ -104,7 +104,7 @@ export default function MinimalCounterSection() {
         {/* Left Text Content */}
         <div className="flex flex-col justify-center animate-slide-in-left">
           <h3 className="text-4xl font-bold leading-snug mb-4 text-white">
-            Shaping Kuwait's Future <br /> through Science & Innovation
+            Shaping Kuwait&apos;s Future <br /> through Science & Innovation
           </h3>
           <p className="text-white/80 leading-relaxed">
             Search Web Design Company About Us, in the a Information from
