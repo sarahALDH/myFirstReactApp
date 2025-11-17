@@ -35,7 +35,7 @@ export default function OurImpactStories() {
 
   const stories = [
     {
-      image: "/image/ImpactStory1.png",
+      image: "/image/Impactstory1.png",
       title: "Breakthrough Research",
       description:
         "Pioneering scientific discoveries that are advancing knowledge and creating new possibilities for the future.",
