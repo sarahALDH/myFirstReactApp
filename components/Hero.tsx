@@ -21,6 +21,7 @@ export default function Hero({
   className = "",
 }: HeroProps) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -31,8 +32,17 @@ export default function Hero({
       });
     };
 
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+
+    checkMobile();
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    window.addEventListener("resize", checkMobile);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", checkMobile);
+    };
   }, []);
 
   // Floating particles animation
@@ -50,8 +60,8 @@ export default function Hero({
       ref={sectionRef}
       className={`relative min-h-screen flex items-center justify-center overflow-hidden ${className}`}
     >
-      {/* Video Background with Motion */}
-      {video && (
+      {/* Video Background (Desktop) / Image Background (Mobile) */}
+      {!isMobile && video && (
         <motion.div
           className="absolute inset-0 z-0"
           initial={{ scale: 1.1 }}
@@ -79,7 +89,25 @@ export default function Hero({
             }}
           />
           {/* Additional overlay for depth - black overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />{" "}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
+        </motion.div>
+      )}
+
+      {/* Image Background (Mobile) */}
+      {isMobile && (
+        <motion.div
+          className="absolute inset-0 z-0"
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+        >
+          <img
+            src="/image/bendoluim.png"
+            alt="Hero background"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          {/* Additional overlay for depth - black overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
         </motion.div>
       )}
 
@@ -126,8 +154,8 @@ export default function Hero({
         />
       </div>
 
-      {/* Floating particles */}
-      {video && (
+      {/* Floating particles - Desktop only */}
+      {!isMobile && video && (
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           {particles.map((particle) => (
             <motion.div
@@ -171,7 +199,7 @@ export default function Hero({
           <img
             src="/image/TimelessEn.png"
             alt="Timeless Legacy - Innovative Future"
-            className="w-auto h-40 sm:h-52 md:h-64 lg:h-80 xl:h-96 2xl:h-[28rem] object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
+            className="w-auto h-52 sm:h-64 md:h-80 lg:h-96 xl:h-[28rem] 2xl:h-[32rem] object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
           />
         </div>
       </motion.div>
@@ -191,7 +219,7 @@ export default function Hero({
           <img
             src="/image/TimelessAr.png"
             alt="إرث راسخ - مستقبل مبتكر"
-            className="w-auto h-40 sm:h-52 md:h-64 lg:h-80 xl:h-96 2xl:h-[28rem] object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
+            className="w-auto h-52 sm:h-64 md:h-80 lg:h-96 xl:h-[28rem] 2xl:h-[32rem] object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
           />
         </div>
       </motion.div>
@@ -207,7 +235,9 @@ export default function Hero({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className={`text-base md:text-lg mb-6 font-light tracking-wider uppercase ${
-                video ? "text-white/90" : "text-gray-600"
+                video || image || videoPoster
+                  ? "text-white/90"
+                  : "text-gray-600"
               }`}
             >
               {subtitle}
@@ -278,7 +308,9 @@ export default function Hero({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
               className={`text-base md:text-lg lg:text-xl mb-12 max-w-3xl leading-relaxed font-light ${
-                video ? "text-white/90" : "text-gray-600"
+                video || image || videoPoster
+                  ? "text-white/90"
+                  : "text-gray-600"
               }`}
             >
               {description}
@@ -305,19 +337,21 @@ export default function Hero({
         >
           <span
             className={`text-sm font-light tracking-wider ${
-              video ? "text-white/70" : "text-gray-500"
+              video || image || videoPoster ? "text-white/70" : "text-gray-500"
             }`}
           >
             Scroll
           </span>
           <motion.div
             className={`w-6 h-10 rounded-full border-2 flex items-start justify-center p-2 ${
-              video ? "border-white/30" : "border-gray-300"
+              video || image || videoPoster
+                ? "border-white/30"
+                : "border-gray-300"
             }`}
           >
             <motion.div
               className={`w-1.5 h-1.5 rounded-full ${
-                video ? "bg-white/70" : "bg-gray-400"
+                video || image || videoPoster ? "bg-white/70" : "bg-gray-400"
               }`}
               animate={{ y: [0, 12, 0] }}
               transition={{

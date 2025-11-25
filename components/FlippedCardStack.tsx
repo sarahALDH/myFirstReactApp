@@ -1,9 +1,20 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 export default function FlippedCardStack() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640); // sm breakpoint
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
   const cards = [
     {
       front: "Research Grants",
@@ -90,8 +101,12 @@ export default function FlippedCardStack() {
               <motion.div
                 className="relative bg-white rounded-2xl p-6 w-full max-w-[240px] min-h-[240px] flex flex-col items-center justify-center text-center border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
                 whileHover={{
-                  y: -8,
+                  scale: 1.02,
+                  y: isMobile ? 0 : -8,
                   transition: { duration: 0.3 },
+                }}
+                whileTap={{
+                  scale: 0.98,
                 }}
               >
                 {/* Background Image - appears on hover */}
