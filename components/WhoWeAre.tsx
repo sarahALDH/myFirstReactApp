@@ -226,8 +226,8 @@ function MinimalCallToAction() {
                     transition={{ delay: 0.9, duration: 0.4 }}
                     className="text-sm text-gray-600 leading-relaxed"
                   >
-                    Our vision is to advance science, technology, and innovation
-                    for a{" "}
+                    vision is to advance science, technology, and innovation for
+                    a{" "}
                     <span className="font-medium text-[#EC601B]">
                       resilient, thriving, and sustainable future
                     </span>
@@ -265,7 +265,7 @@ function MinimalCallToAction() {
                     transition={{ delay: 1.0, duration: 0.4 }}
                     className="text-sm text-gray-600 leading-relaxed"
                   >
-                    Our mission is to pursue{" "}
+                    mission is to pursue{" "}
                     <span className="font-medium text-[#F7911E]">
                       scientific excellence to tackle national challenges
                     </span>{" "}
