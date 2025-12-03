@@ -26,7 +26,7 @@ export default function FlippedCardStack() {
     },
     {
       title: "Our Publications",
-      image: "/image/Pub.png",
+      image: "/image/pub.png",
     },
   ];
 
