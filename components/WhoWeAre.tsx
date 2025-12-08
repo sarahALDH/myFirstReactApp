@@ -84,8 +84,16 @@ function WhoWeAre() {
   // ];
 
   const highlights = [
-    "Our Vision is to advance science, technology, and innovation for a resilient, thriving, and sustainable future.",
-    "Our Mission is to pursue scientific excellence to tackle national challenges through a prominent science, technology, and innovation model.",
+    <>
+      <span className="font-bold">Our Vision</span> is to advance science,
+      technology, and innovation for a resilient, thriving, and sustainable
+      future.
+    </>,
+    <>
+      <span className="font-bold">Our Mission</span> is to pursue scientific
+      excellence to tackle national challenges through a prominent science,
+      technology, and innovation model.
+    </>,
   ];
 
   return (
@@ -109,30 +117,36 @@ function WhoWeAre() {
           >
             <div className="relative h-[500px] sm:h-[550px] lg:h-[600px]">
               {/* Main large image */}
-              <div className="absolute top-0 left-0 w-[70%] h-[65%] rounded-lg overflow-hidden shadow-2xl z-10">
+              <div className="absolute top-0 left-0 w-[70%] h-[65%] rounded-lg overflow-hidden shadow-2xl z-10 group">
                 <img
-                  src="/image/who2.jpg"
+                  src="/image/impactstory1.png"
                   alt="KFAS Team"
                   className="w-full h-full object-cover"
                 />
+                {/* Overlay effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#1D2D44]/40 to-[#BBDEFB]/20 group-hover:opacity-70 transition-opacity duration-500"></div>
               </div>
 
               {/* Second overlapping image */}
-              <div className="absolute bottom-0 right-0 w-[65%] h-[55%] rounded-lg overflow-hidden shadow-xl z-20 border-4 border-white">
+              <div className="absolute bottom-0 right-0 w-[65%] h-[55%] rounded-lg overflow-hidden shadow-xl z-20 border-4 border-white group">
                 <img
                   src="/image/banner3.webp"
                   alt="Scientific Research"
                   className="w-full h-full object-cover"
                 />
+                {/* Overlay effect */}
+                <div className="absolute inset-0 bg-gradient-to-tl from-[#1D2D44]/40 to-[#BBDEFB]/20 group-hover:opacity-70 transition-opacity duration-500"></div>
               </div>
 
               {/* Third small image */}
-              <div className="absolute bottom-[15%] left-[5%] w-[40%] h-[35%] rounded-lg overflow-hidden shadow-lg z-30 border-4 border-white">
+              <div className="absolute bottom-[15%] left-[5%] w-[40%] h-[35%] rounded-lg overflow-hidden shadow-lg z-30 border-4 border-white group">
                 <img
-                  src="/image/back4.webp"
+                  src="/image/who4.png"
                   alt="Innovation"
                   className="w-full h-full object-cover"
                 />
+                {/* Overlay effect */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#1D2D44]/40 to-[#BBDEFB]/20 group-hover:opacity-70 transition-opacity duration-500"></div>
               </div>
 
               {/* Decorative element */}
@@ -155,26 +169,87 @@ function WhoWeAre() {
               className="flex items-center gap-3"
             >
               <div className="w-8 h-[2px] bg-[#EC601B]"></div>
-              <p className="text-sm font-semibold text-[#1E3A5F] uppercase tracking-wider">
+              <p className="font-montserrat text-sm font-semibold text-[#black] uppercase tracking-wider">
                 About Us
               </p>
             </motion.div>
 
-            {/* Main Title */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{
-                duration: 0.6,
-                delay: 0.2,
-                ease: [0.25, 0.46, 0.45, 0.94],
-              }}
-            >
-              <h2 className="font-montserrat text-3xl sm:text-4xl lg:text-[42px] font-bold text-[#1E3A5F] tracking-tight leading-tight">
-                Kuwait Foundation for the Advancement of Sciences{" "}
-                <span className="text-[#EC601B]">(KFAS)</span>
-              </h2>
-            </motion.div>
+            {/* Animated KFAS Title */}
+            <div className="relative overflow-hidden">
+              {/* Collapsed KFAS - shows first, then fades out */}
+              <motion.h2
+                initial={{ opacity: 1, scale: 1 }}
+                animate={
+                  isVisible
+                    ? { opacity: 0, scale: 0.8, height: 0 }
+                    : { opacity: 1, scale: 1 }
+                }
+                transition={{
+                  duration: 0.6,
+                  delay: 0.8,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                }}
+                className="font-montserrat text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight"
+              >
+                <span className="text-[#EC601B]">K</span>
+                <span className="text-[#EC601B]">F</span>
+                <span className="text-[#EC601B]">A</span>
+                <span className="text-[#EC601B]">S</span>
+              </motion.h2>
+
+              {/* Expanded Full Name - fades in after KFAS */}
+              <motion.h2
+                initial={{ opacity: 0, y: 30 }}
+                animate={
+                  isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
+                }
+                transition={{
+                  duration: 0.8,
+                  delay: 1.2,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                }}
+                className="font-montserrat text-2xl sm:text-3xl lg:text-[38px] font-normal text-black tracking-tight leading-tight"
+              >
+                <motion.span
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={
+                    isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
+                  }
+                  transition={{ duration: 0.5, delay: 1.3 }}
+                >
+                  <span className="text-[#EC601B] font-semibold">K</span>uwait{" "}
+                </motion.span>
+                <motion.span
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={
+                    isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
+                  }
+                  transition={{ duration: 0.5, delay: 1.5 }}
+                >
+                  <span className="text-[#EC601B] font-semibold">F</span>
+                  oundation for the{" "}
+                </motion.span>
+                <motion.span
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={
+                    isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
+                  }
+                  transition={{ duration: 0.5, delay: 1.7 }}
+                >
+                  <span className="text-[#EC601B] font-semibold">A</span>
+                  dvancement of{" "}
+                </motion.span>
+                <motion.span
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={
+                    isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
+                  }
+                  transition={{ duration: 0.5, delay: 1.9 }}
+                >
+                  <span className="text-[#EC601B] font-semibold">S</span>ciences
+                </motion.span>
+              </motion.h2>
+            </div>
 
             {/* Paragraph */}
             <motion.p
@@ -191,7 +266,26 @@ function WhoWeAre() {
               Innovation to address national challenges first began through the
               pledge made by the private sector shareholding companies. Today,
               KFAS's impact is prominently embedded within the country's
-              scientific and technological accomplishments.
+              scientific and technological accomplishments.{" "}
+              <Link
+                href="/AboutKfas"
+                className="inline-flex items-center text-[#EC601B] font-medium hover:text-[#F7911E] transition-colors duration-300 group"
+              >
+                Read more
+                <svg
+                  className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </Link>
             </motion.p>
 
             {/*  */}
@@ -238,12 +332,12 @@ function WhoWeAre() {
               }}
               className="pt-4"
             >
-              <Link
+              {/* <Link
                 href="/about"
                 className="inline-flex items-center justify-center px-8 py-3.5 bg-[#1E3A5F] text-white font-semibold text-sm uppercase tracking-wider rounded hover:bg-[#EC601B] transition-all duration-300 shadow-lg hover:shadow-xl"
               >
                 Read More
-              </Link>
+              </Link> */}
             </motion.div>
           </div>
         </div>
