@@ -119,7 +119,7 @@ function WhoWeAre() {
               {/* Main large image */}
               <div className="absolute top-0 left-0 w-[70%] h-[65%] rounded-lg overflow-hidden shadow-2xl z-10 group">
                 <img
-                  src="/image/impactstory1.png"
+                  src="/image/Impactstory1.png"
                   alt="KFAS Team"
                   className="w-full h-full object-cover"
                 />
