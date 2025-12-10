@@ -73,7 +73,6 @@ export default function Home() {
         <OurImpactStories />
         <LogoShowcase />
         <InstagramFeed />
-        <OurImpactStories />
 
         {/* <StatsCounter /> */}
       </main>

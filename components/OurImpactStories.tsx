@@ -33,26 +33,29 @@ export default function OurImpactStories() {
     };
   }, []);
 
-  const stories = [
+  const news = [
     {
       image: "/image/Impactstory1.png",
-      title: "Breakthrough Research",
+      title: "KFAS Launches New Research Grant Program",
       description:
-        "Pioneering scientific discoveries that are advancing knowledge and creating new possibilities for the future.",
+        "A new initiative to support emerging researchers in Kuwait with funding opportunities for innovative projects.",
+      date: "December 10, 2024",
       link: "#",
     },
     {
       image: "/image/ImpactStory2.png",
-      title: "Innovation in Action",
+      title: "Annual Science Conference 2024",
       description:
-        "Transforming research into real-world solutions that address critical challenges and drive meaningful change.",
+        "Join us for the biggest scientific gathering in Kuwait, featuring renowned speakers and groundbreaking research presentations.",
+      date: "December 5, 2024",
       link: "#",
     },
     {
-      image: "/image/ImpactStory3.png",
-      title: "Community Impact",
+      image: "/image/InstagramPost2.jpg",
+      title: "Innovation Workshop Success",
       description:
-        "Empowering communities through research initiatives that create lasting positive impact and sustainable development.",
+        "Over 200 participants joined our recent workshop on fostering innovation and entrepreneurship in the scientific community.",
+      date: "November 28, 2024",
       link: "#",
     },
   ];
@@ -95,7 +98,7 @@ export default function OurImpactStories() {
               animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              Our Work in Action
+              Latest News
             </motion.h2>
             <motion.div
               className="mb-4"
@@ -115,8 +118,8 @@ export default function OurImpactStories() {
               animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              Real stories that highlight the outcomes of our research
-              investments and initiatives.
+              Stay updated with the latest announcements, events, and
+              achievements from KFAS.
             </motion.p>
           </div>
 
@@ -150,12 +153,13 @@ export default function OurImpactStories() {
           </motion.div>
         </motion.div>
 
-        {/* Stories Grid */}
+        {/* News Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-          {stories.map((story, index) => (
-            <motion.div
+          {news.map((item, index) => (
+            <motion.a
               key={index}
-              className="group overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer"
+              href={item.link}
+              className="group overflow-hidden rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer block"
               initial={{ opacity: 0, y: 50, scale: 0.95 }}
               animate={
                 isVisible
@@ -172,28 +176,48 @@ export default function OurImpactStories() {
                 transition: { duration: 0.3 },
               }}
             >
-              {/* Large Image Container */}
-              <div className="relative h-80 lg:h-96 overflow-hidden">
+              {/* Image Container */}
+              <div className="relative h-56 lg:h-64 overflow-hidden">
                 <img
-                  src={story.image}
-                  alt={story.title}
+                  src={item.image}
+                  alt={item.title}
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 {/* Image overlay */}
-                <div className="absolute inset-0 bg-[#F26A21]/20 group-hover:bg-[#F26A21]/50 transition-colors duration-300"></div>
-                {/* Gradient overlay for text readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-                {/* Title and Description overlapping image - positioned at bottom with padding */}
-                <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-10 flex flex-col">
-                  <h3 className="text-xl lg:text-2xl font-light text-white tracking-tight mb-3 drop-shadow-lg">
-                    {story.title}
-                  </h3>
-                  <p className="text-sm lg:text-base text-white/90 leading-relaxed font-light drop-shadow-md">
-                    {story.description}
-                  </p>
+                <div className="absolute inset-0 bg-[#1D2D44]/20 group-hover:bg-[#1D2D44]/40 transition-colors duration-300"></div>
+                {/* Date badge */}
+                <div className="absolute top-4 left-4 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full">
+                  <span className="text-xs font-medium text-[#1D2D44]">
+                    {item.date}
+                  </span>
                 </div>
               </div>
-            </motion.div>
+              {/* Content */}
+              <div className="p-6 bg-white">
+                <h3 className="text-lg lg:text-xl font-semibold text-[#1D2D44] mb-3 group-hover:text-[#EC601B] transition-colors duration-300">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-gray-600 leading-relaxed line-clamp-2">
+                  {item.description}
+                </p>
+                <div className="mt-4 flex items-center text-[#EC601B] text-sm font-medium">
+                  <span>Read More</span>
+                  <svg
+                    className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </motion.a>
           ))}
         </div>
       </div>
